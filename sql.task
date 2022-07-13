@@ -1,0 +1,27 @@
+CREATE  TABLE products(
+    id SERIAL PRIMARY KEY,
+    product_name VARCHAR(50) NOT NULL ,
+    manfacturer VARCHAR(50) NOT NULL,
+    product_count INTEGER DEFAULT 0,
+    price NUMERIC NOT NULL ,
+    isDiscounted BOOL
+
+);
+INSERT INTO products(product_name, manfacturer, product_count, price,isDiscounted)
+VALUES ('Iphone x', 'Apple', 2, 71000),
+       ('Iphone 8', 'Apple', 3, 56000),
+       ('Calaxy S9', 'Samsung', 6, 56000),
+       ('Calaxy S8 plus', 'Samsung', 2, 46000),
+       ('Desire 12', 'HTC', 3, 26000);
+
+
+select * from products where manfacturer not in('HTC');
+select * from products  order by price <75000 DESC;
+select  * from products where price >= 46000;
+select  max(price) from products;
+select min(price) from products;
+--7. Дискоунт болбогон продуктуларды чыгарыныз.
+select * from products order by count(price) ;
+select * from products order by price desc;
+select  sum(price) from products;
+select manfacturer, count(*) from products group by manfacturer having count(*)<=2;
